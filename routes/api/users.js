@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
+const Mood = require('../../models/Mood');
+const userValidations = require('../../validations/userValidations');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const tokenKey = require('../../config/keys_dev').secretOrKey;
+const passport = require('passport');
+require('../../config/passport')(passport);
 
 // Get All Users
 router.get('/', async (req, res) =>{
@@ -36,9 +43,9 @@ router.put('/:id', async (req,res) => {
  })
 
  //Delete User
- router.delete('/:id', async (req,res) => {
+ router.delete('/DeleteUser', passport.authenticate('jwt', { session: false }), async (req,res) => {
     try {
-     const id = req.params.id
+     const id = req.user.id
      const deletedUser = await User.findByIdAndRemove(id)
      res.json({msg:'User was deleted successfully'})
     }
@@ -47,5 +54,40 @@ router.put('/:id', async (req,res) => {
         console.log(error)
     }  
  })
+
+ router.post('/register', async (req,res) => {
+    console.log(req.body)
+    const isValidated = userValidations.createValidation(req.body);
+    if (isValidated.error) 
+    {
+        console.log(isValidated.error.details[0].message);
+        return  res.status(400).send({msg: isValidated.error.details[0].message ,error:"validation error"}) ;
+    }
+    const body={
+      name:req.body.name,
+      gender:req.body.gender,
+      email:req.body.email,
+      password:req.body.password
+    }
+    const user = await User.findOne({email:body.email})
+    if(user) 
+    {
+      console.log("already exist")
+      return res.status(400).json({error: 'Email already exists',msg:"Email already exists"})
+    }
+    const salt = bcrypt.genSaltSync(10)
+    const hashedPassword = bcrypt.hashSync(body.password,salt)
+    const newUser = new User({
+            name:body.name,
+            email:body.email,
+            password: hashedPassword ,
+            gender:body.gender,
+            dateOFBrith:body.dateOfBirth
+        })
+    newUser
+    .save()
+    .then(user => res.json({data: user}))
+    .catch(err => res.json({error: 'Can not create user'},console.log(err)))
+  });
 
  module.exports = router;
