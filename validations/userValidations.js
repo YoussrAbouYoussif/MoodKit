@@ -18,7 +18,6 @@ module.exports = {
         .email()
         .max(20)
     }
-
     return Joi.validate(request, createSchema)
   },
 
