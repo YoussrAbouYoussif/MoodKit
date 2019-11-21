@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Question = require('../../models/Question');
 
+
 // Get All Questions
 router.get('/', async (req, res) =>{
     const questions = await Question.find();
@@ -11,6 +12,12 @@ router.get('/', async (req, res) =>{
 // Get By ID
 router.get('/:id', async (req, res) =>{
     const question = await Question.findById(req.params.id);
+    return res.json({ data: question })
+}); 
+
+//Get By Question Number
+router.get('/:questionNumber', async (req, res) =>{
+    const question = await Question.findOne(req.params.questionNumber);
     return res.json({ data: question })
 }); 
 
