@@ -14,6 +14,12 @@ router.get('/:id', async (req, res) => {
   return res.json({ data: mood })
 })
 
+//Get By Mood Name
+router.get('/:moodName', async (req, res) => {
+  const mood = await Mood.findOne(req.params.moodName)
+  return res.json({ data: mood })
+})
+
 //Create New Mood
 router.post('/', async (req, res) => {
   const newMood = await Mood.create(req.body)
