@@ -123,15 +123,18 @@ router.put(
     } catch (error) {}
   }
 )
+
 //Delete User
-router.delete('/:id', async (req, res) => {
-  try {
-    const id = req.params.id
-    const deletedUser = await User.findByIdAndRemove(id)
-    res.json({ msg: 'User was deleted successfully' })
-  } catch (error) {
-    console.log(error)
-  }
-})
+router.delete('/DeleteUser', passport.authenticate('jwt', { session: false }), async (req,res) => {
+    try {
+     const id = req.user.id
+     const deletedUser = await User.findByIdAndRemove(id)
+     res.json({msg:'User was deleted successfully'})
+    }
+    catch(error) {
+
+        console.log(error)
+    }  
+ })
 
 module.exports = router
