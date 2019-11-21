@@ -1,51 +1,74 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../../models/User');
+const express = require('express')
+const router = express.Router()
+const User = require('../../models/User')
 
 // Get All Users
-router.get('/', async (req, res) =>{
-    const users = await User.find();
-    res.json({ data: users });
-}); 
+router.get('/', async (req, res) => {
+  const users = await User.find()
+  res.json({ data: users })
+})
 
 // Get By ID
-router.get('/:id', async (req, res) =>{
-    const user = await User.findById(req.params.id);
-    return res.json({ data: user })
-}); 
+router.get('/:id', async (req, res) => {
+  const user = await User.findById(req.params.id)
+  return res.json({ data: user })
+})
 
 //Create New User
 router.post('/', async (req, res) => {
-	const newUser = await User.create(req.body);
-	return res.json({ data: newUser });
-});
+  const newUser = await User.create(req.body)
+  return res.json({ data: newUser })
+})
 
 //Update User
-router.put('/:id', async (req,res) => {
-    try {
-   //   const id = req.params.id
-     const user = await User.findById(req.params.id)
-     if(!user) return res.status(404).send({error: 'User does not exist'})
-     const updatedUser = await User.findByIdAndUpdate({_id : req.params.id},req.body)
-     res.json({msg: 'User updated successfully'})
-    }
-    catch(error) {
+router.put('/:id', async (req, res) => {
+  try {
+    //   const id = req.params.id
+    const user = await User.findById(req.params.id)
+    if (!user) return res.status(404).send({ error: 'User does not exist' })
+    const updatedUser = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      req.body
+    )
+    res.json({ msg: 'User updated successfully' })
+  } catch (error) {
+    console.log(error)
+  }
+})
 
-        console.log(error)
-    }  
- })
+//Delete User
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const deletedUser = await User.findByIdAndRemove(id)
+    res.json({ msg: 'User was deleted successfully' })
+  } catch (error) {
+    console.log(error)
+  }
+})
 
- //Delete User
- router.delete('/:id', async (req,res) => {
-    try {
-     const id = req.params.id
-     const deletedUser = await User.findByIdAndRemove(id)
-     res.json({msg:'User was deleted successfully'})
-    }
-    catch(error) {
+//Login
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body
+    console.log(req.body)
+    const user = await User.findOne({ email })
+    if (!user) return res.status(400).json({ msg: 'Email does not exist' })
+    const match = bcrypt.compareSync(password, user.password)
+    if (match) {
+      const payload = {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+      const token = jwt.sign(payload, tokenKey, { expiresIn: '24h' })
+      res.json({ data: `Bearer ${token}` })
+      return res.json({ data: 'Token' })
+    } else
+      return res
+        .status(400)
+        .send({ password: 'Wrong password', msg: 'wrong password' })
+  } catch (e) {}
+})
 
-        console.log(error)
-    }  
- })
-
- module.exports = router;
+module.exports = router
