@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import store from './store'
+import './App.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css'
 import Register from './components/pages/Register'
 import Question1 from './components/pages/Question1'
@@ -12,9 +16,10 @@ import Question8 from './components/pages/Question8'
 import Question9 from './components/pages/Question9'
 import Question10 from './components/pages/Question10'
 import Question11 from './components/pages/Question11'
-import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import store from './store' 
+import Login from './components/pages/login'
+import Profile from './components/pages/profile'
+import Test from './components/pages/test'
+import ChangePassword from './components/pages/changePassword'
 
 class App extends Component {
   constructor() {
@@ -24,32 +29,72 @@ class App extends Component {
     return (
       <div>
         <Provider store={store}>
-        <Router>
-        <Route exact path="/register"
-            render={(props) => <Register {...props} />} />
-          <Route exact path="/firstQuestion"
-            render={(props) => <Question1 {...props} />} />
-            <Route exact path="/secondQuestion"
-            render={(props) => <Question2 {...props} />} />
-            <Route exact path="/thirdQuestion"
-            render={(props) => <Question3 {...props} />} />
-            <Route exact path="/fourthQuestion"
-            render={(props) => <Question4 {...props} />} />
-            <Route exact path="/fifthQuestion"
-            render={(props) => <Question5 {...props} />} />
-            <Route exact path="/sixthQuestion"
-            render={(props) => <Question6 {...props} />} />
-            <Route exact path="/seventhQuestion"
-            render={(props) => <Question7 {...props} />} />
-            <Route exact path="/eighthQuestion"
-            render={(props) => <Question8 {...props} />} />
-            <Route exact path="/ninthQuestion"
-            render={(props) => <Question9 {...props} />} />
-            <Route exact path="/tenthQuestion"
-            render={(props) => <Question10 {...props} />} />
-            <Route exact path="/eleventhQuestion"
-            render={(props) => <Question11 {...props} />} />
-        </Router>
+          <Router>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/test" component={Test} />
+            <Route exact path="/changePassword" component={ChangePassword} />
+            <Route
+              exact
+              path="/register"
+              render={props => <Register {...props} />}
+            />
+            <Route
+              exact
+              path="/firstQuestion"
+              render={props => <Question1 {...props} />}
+            />
+            <Route
+              exact
+              path="/secondQuestion"
+              render={props => <Question2 {...props} />}
+            />
+            <Route
+              exact
+              path="/thirdQuestion"
+              render={props => <Question3 {...props} />}
+            />
+            <Route
+              exact
+              path="/fourthQuestion"
+              render={props => <Question4 {...props} />}
+            />
+            <Route
+              exact
+              path="/fifthQuestion"
+              render={props => <Question5 {...props} />}
+            />
+            <Route
+              exact
+              path="/sixthQuestion"
+              render={props => <Question6 {...props} />}
+            />
+            <Route
+              exact
+              path="/seventhQuestion"
+              render={props => <Question7 {...props} />}
+            />
+            <Route
+              exact
+              path="/eighthQuestion"
+              render={props => <Question8 {...props} />}
+            />
+            <Route
+              exact
+              path="/ninthQuestion"
+              render={props => <Question9 {...props} />}
+            />
+            <Route
+              exact
+              path="/tenthQuestion"
+              render={props => <Question10 {...props} />}
+            />
+            <Route
+              exact
+              path="/eleventhQuestion"
+              render={props => <Question11 {...props} />}
+            />
+          </Router>
         </Provider>
       </div>
     )
