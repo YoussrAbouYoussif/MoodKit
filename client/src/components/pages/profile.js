@@ -9,7 +9,7 @@ import '../../App.css'
 
 class Profile extends Component {
   onAnimationEnd(e) {
-    document.location.href = '/test'
+    document.location.href = '/firstQuestion'
   }
 
   logOut(e) {

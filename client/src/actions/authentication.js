@@ -31,16 +31,9 @@ export const loginUser = user => dispatch => {
     })
 }
 
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded
-  }
-}
-
 export const registerUser = user => dispatch => {
   axios
-    .post('http://localhost:3001/routes/api/questions', user)
+    .post('/routes/api/users/register', user)
     .then(function(response) {
       swal({
         title: 'Good job!',
@@ -54,6 +47,7 @@ export const registerUser = user => dispatch => {
       swal(err.response.data.error || err.response.data)
     })
 }
+
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
