@@ -162,9 +162,9 @@ router.put(
     const newUser = new User({
             name:body.name,
             email:body.email,
-            password: hashedPassword ,
-            gender:body.gender,
-            dateOFBrith:body.dateOfBirth
+            password: hashedPassword,
+            gender:body.gender
+
         })
     newUser
     .save()
