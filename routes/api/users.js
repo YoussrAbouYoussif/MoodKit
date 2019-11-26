@@ -215,5 +215,40 @@ router.post(
     }
   }
 )
+//register
+router.post('/register', async (req, res) => {
+  console.log(req.body)
+  const isValidated = userValidations.createValidation(req.body)
+  if (isValidated.error) {
+    console.log(isValidated.error.details[0].message)
+    return res
+      .status(400)
+      .send({
+        msg: isValidated.error.details[0].message,
+        error: 'validation error'
+      })
+  }
+  const body = {
+    name: req.body.name,
+    gender: req.body.gender,
+    email: req.body.email,
+    password: req.body.password
+  }
+  const user = await User.findOne({ email: body.email })
+  if (user) {
+    console.log('already exist')
+    return res
+      .status(400)
+      .json({ error: 'Email already exists', msg: 'Email already exists' })
+  }
+  const salt = bcrypt.genSaltSync(10)
+  const hashedPassword = bcrypt.hashSync(body.password, salt)
+  const newUser = new User({
+    name: body.name,
+    email: body.email,
+    password: hashedPassword,
+    gender: body.gender
+  })
+})
 
 module.exports = router
