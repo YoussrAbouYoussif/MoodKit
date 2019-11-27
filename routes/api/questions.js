@@ -16,10 +16,27 @@ router.get('/:id', async (req, res) =>{
 }); 
 
 //Get By Question Number
-router.get('/:questionNumber', async (req, res) =>{
-    const question = await Question.findOne(req.params.questionNumber);
-    return res.json({ data: question })
-}); 
+router.get('/getByNumber/:questionNumber', async (req, res) =>{
+    try
+    {
+    const questionNumber = parseInt(req.params.questionNumber,10)
+    var question = await Question.find();
+    var requiredQuestion;
+    for(var i =0;i<question.length;i++)
+    {
+        var number = question[i].questionNumber
+        if(questionNumber===number)
+        {
+            requiredQuestion=question[i]
+        }
+    }
+    return res.json({ data: requiredQuestion})
+}
+    catch(err)
+    {
+        console.log(err)
+    }
+});
 
 //Create New Question
 router.post('/', async (req, res) => {
