@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 
 export const registerUser = (user) => (dispatch) => {
 	axios
-		.post('http://localhost:3001/routes/api/questions', user)
+		.post('/routes/api/users/register', user)
 		.then(function(response) {
 					swal({
 						title: 'Good job!',

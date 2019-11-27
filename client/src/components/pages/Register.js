@@ -28,7 +28,7 @@ class Register extends React.Component {
         super(props);
         this.state = {
             name:'',
-            gender:'',
+            gender:"Male",
             email:'',
             password:''
         }
@@ -64,7 +64,7 @@ class Register extends React.Component {
     validateUser() {
 		return (
             this.state.name.length <= 50 &&
-			this.state.email.length <= 20 &&
+			this.state.email.length <= 60 &&
 			this.state.gender.length >= 4 &&
 			this.state.gender.length <= 6 &&
 			this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) &&
@@ -126,7 +126,7 @@ class Register extends React.Component {
 						<MDBInput
 							label="Email"
 							type="email"
-							className={this.state.email.length <= 20 && this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? (
+							className={this.state.email.length <= 60 && this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? (
                                 'is-valid'
                             ) : (
                                 'is-invalid'
