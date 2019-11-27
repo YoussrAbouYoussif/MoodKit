@@ -3,9 +3,33 @@ const router = express.Router();
 const Question = require('../../models/Question');
 
 
+//Get By Question Number
+router.get('/getByNumber/:questionNumber', async (req, res) =>{
+    try
+    {
+        const questionNumber = parseInt(req.params.questionNumber,10)
+    var question = await Question.find();
+    var requiredQuestion;
+    for(var i =0;i<question.length;i++)
+    {
+        var number = question[i].questionNumber
+        if(questionNumber===number)
+        {
+            requiredQuestion=question[i]
+        }
+    }
+    return res.json({ data: requiredQuestion})
+}
+    catch(err)
+    {
+        console.log(err)
+    }
+}); 
+
 // Get All Questions
 router.get('/', async (req, res) =>{
     const questions = await Question.find();
+    console.log("HELLO")
     res.json({ data: questions });
 }); 
 

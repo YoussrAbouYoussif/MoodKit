@@ -99,7 +99,7 @@ class LandingBody extends Component {
                                     variant="outline-purple"
                                     className="btn-block btn-outline-purple z-depth-1a"
 									href="/login"
-                                    style={{transform:"translate3d(500px,-500px,0px)", width:"80px"}}>
+                                    style={{transform:"translate3d(500px,-490px,0px)", width:"80px"}}>
                                     <font color="purple" fontSize="20px"> Login</font>
 								</Button>
                                 </div>
