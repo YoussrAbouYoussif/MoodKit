@@ -60,16 +60,12 @@ class GoogleLogin extends Component {
       })
     }
     })
-    
   }
-
   render() {
     return (
       <div className="App">
         {this.state.isSignedIn ? (
           <span>
-            <div>Signed In!</div>
-            <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
           </span>
         ) : (
           <StyledFirebaseAuth

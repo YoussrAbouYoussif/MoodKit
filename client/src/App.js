@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import './App.css'
+import { Provider } from 'react-redux'
+import store from './store'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import Register from './components/pages/Register'
 import Question1 from './components/pages/Question1'
 import Question2 from './components/pages/Question2'
@@ -12,10 +15,12 @@ import Question8 from './components/pages/Question8'
 import Question9 from './components/pages/Question9'
 import Question10 from './components/pages/Question10'
 import Question11 from './components/pages/Question11'
-import Google from './components/pages/GoogleLogin'
-import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import store from './store' 
+import Google from './components/pages/GoogleLogin' 
+import Login from './components/pages/login'
+import Profile from './components/pages/profile'
+import ChangePassword from './components/pages/changePassword'
+
+
 
 class App extends Component {
   constructor() {
@@ -52,6 +57,9 @@ class App extends Component {
             render={(props) => <Question11 {...props} />} />
             <Route exact path="/googleLogin"
             render={(props) => <Google {...props} />} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/changePassword" component={ChangePassword} />
         </Router>
         </Provider>
       </div>
