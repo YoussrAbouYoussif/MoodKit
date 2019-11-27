@@ -5,6 +5,7 @@ import Image from '../../nada.jpeg'
 
 import { MDBAnimation } from 'mdbreact'
 import Quiz from '../../quiz.png'
+import P1 from '../../p1.jpg'
 import '../../App.css'
 
 class Profile extends Component {
@@ -15,7 +16,7 @@ class Profile extends Component {
   logOut(e) {
     localStorage.setItem('isLoggedIn', false)
     if (localStorage.getItem('isLoggedIn') === 'false') {
-      document.location.href = '/landingPage'
+      document.location.href = '/'
     }
   }
 
@@ -41,10 +42,10 @@ class Profile extends Component {
                 zIndex: '30',
                 transform: 'translate3d(350px,100px,30px)'
               }}
-              class="btn btn-outline-secondary btn-rounded waves-effect"
+              class="btn btn-transparent btn-rounded waves-effect"
               onClick={this.changePassword}
             >
-              Change Password
+              <font color="white">Change Password</font>
             </button>
           </div>
           <MDBAnimation type="bounce" onClick={this.onAnimationEnd} count={300}>
@@ -59,10 +60,10 @@ class Profile extends Component {
             <button
               type="button"
               style={{ zIndex: '30', transform: 'translate3d(0,100px,30px)' }}
-              class="btn btn-outline-secondary btn-rounded waves-effect"
+              class="btn btn-transparent btn-rounded waves-effect"
               onClick={this.logOut}
             >
-              Logout
+              <font color="white">Logout</font>
             </button>
           </div>
         </div>
@@ -76,7 +77,7 @@ class Profile extends Component {
           }}
         >
           <img
-            src={Image}
+            src={P1}
             style={{
               backgroundSize: 'cover',
               width: '100%',

@@ -10,16 +10,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import classnames from 'classnames'
 import 'materialize-css'
-import Button from '@material-ui/core/Button'
-import {
-  MDBCard,
-  MDBCardTitle,
-  MDBCardGroup,
-  MDBCardImage,
-  MDBCardText,
-  MDBCardBody
-} from 'mdbreact'
-const imgUrl = '../../Background.jpg'
+import { Button } from 'react-bootstrap'
+import { MDBCard, MDBCardBody } from 'mdbreact'
+import P1 from '../../p1.jpg'
+
 const styles = theme => ({
   root: {
     width: '90%'
@@ -83,105 +77,137 @@ class Register extends React.Component {
 
     return (
       <div>
-        <form>
-          <MDBCard
-            style={{ width: '500px', marginLeft: '480px', marginTop: '100px' }}
-          >
-            <MDBCardBody>
-              <div style={{ marginLeft: '150px' }}>
-                <h1>Register</h1>
-              </div>
+        <div>
+          <img
+            src={P1}
+            style={{
+              backgroundSize: 'cover',
+              width: '100%',
+              height: '100%',
+              position: 'sticky',
+              zIndex: '0'
+              //transform: 'translate3d(0,-180px,0)'
+            }}
+          />
+        </div>
+        <div
+          style={{
+            zIndex: '30',
+            transform: 'translate3d(0,-800px,30px)',
+            width: '400px',
+            marginLeft: '350px'
+          }}
+        >
+          <form>
+            <MDBCard
+              style={{
+                width: '400px',
+                height: '600px',
+                marginTop: '100px'
+              }}
+            >
+              <MDBCardBody>
+                <div style={{ marginLeft: '100px' }}>
+                  <h1>
+                    <font color="purple">
+                      <strong>Register</strong>
+                    </font>
+                  </h1>
+                </div>
 
-              <div className="form-group">
-                <MDBInput
-                  label="Name"
-                  type="text"
-                  className={
-                    this.state.name.length >= 3 && this.state.name.length <= 50
-                      ? 'is-valid'
-                      : 'is-invalid'
-                  }
-                  name="name"
-                  onChange={this.changeHandler}
-                  style={{ width: '250px' }}
-                  value={this.state.name}
-                  required
-                />
-              </div>
-              <br />
-              <MDBRow>
-                <MDBCol>
-                  <div className="form-group">
-                    <label htmlFor="gender">Gender</label>
-                    <select
-                      className="form-control"
-                      id="exampleFormControlSelect1"
-                      name="gender"
-                      onChange={this.changeHandler}
-                      value={this.state.gender}
-                      style={{ width: '250px' }}
-                    >
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                </MDBCol>
-              </MDBRow>
-              <br />
-              <div className="form-group">
-                <MDBInput
-                  label="Email"
-                  type="email"
-                  className={
-                    this.state.email.length <= 20 &&
-                    this.state.email.match(
-                      /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
-                    )
-                      ? 'is-valid'
-                      : 'is-invalid'
-                  }
-                  name="email"
-                  onChange={this.changeHandler}
-                  value={this.state.email}
-                  style={{ width: '250px' }}
-                  required
-                />
-              </div>
-              <br />
+                <div className="form-group">
+                  <MDBInput
+                    label="Name"
+                    type="text"
+                    className={
+                      this.state.name.length >= 3 &&
+                      this.state.name.length <= 50
+                        ? 'is-valid'
+                        : 'is-invalid'
+                    }
+                    name="name"
+                    onChange={this.changeHandler}
+                    style={{ width: '350px' }}
+                    value={this.state.name}
+                    required
+                  />
+                </div>
+                <br />
+                <MDBRow>
+                  <MDBCol>
+                    <div className="form-group">
+                      <label htmlFor="gender">Gender</label>
+                      <select
+                        className="form-control"
+                        id="exampleFormControlSelect1"
+                        name="gender"
+                        onChange={this.changeHandler}
+                        value={this.state.gender}
+                        style={{ width: '350px' }}
+                      >
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
+                <br />
+                <div className="form-group">
+                  <MDBInput
+                    label="Email"
+                    type="email"
+                    className={
+                      this.state.email.length <= 20 &&
+                      this.state.email.match(
+                        /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
+                      )
+                        ? 'is-valid'
+                        : 'is-invalid'
+                    }
+                    name="email"
+                    onChange={this.changeHandler}
+                    value={this.state.email}
+                    style={{ width: '350px' }}
+                    required
+                  />
+                </div>
+                <br />
 
-              <div className="form-group">
-                <MDBInput
-                  label="Password"
-                  type="password"
-                  className={
-                    this.state.password.length >= 8 &&
-                    this.state.password.length <= 50
-                      ? 'is-valid'
-                      : 'is-invalid'
-                  }
-                  name="password"
-                  onChange={this.changeHandler}
-                  value={this.state.password}
-                  style={{ width: '250px' }}
-                  required
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <Button
-                  type="submit"
-                  disabled={!this.validateUser()}
-                  onClick={e => this.handleSubmit(e)}
-                  className="btn-block btn-rounded z-depth-1a"
-                  variant="omar"
-                  style={{ width: '100px', backgroundColor: '#a3dbf1' }}
-                >
-                  Submit
-                </Button>
-              </div>
-            </MDBCardBody>
-          </MDBCard>
-        </form>
+                <div className="form-group">
+                  <MDBInput
+                    label="Password"
+                    type="password"
+                    className={
+                      this.state.password.length >= 8 &&
+                      this.state.password.length <= 50
+                        ? 'is-valid'
+                        : 'is-invalid'
+                    }
+                    name="password"
+                    onChange={this.changeHandler}
+                    value={this.state.password}
+                    style={{ width: '350px' }}
+                    required
+                  />
+                </div>
+                <br />
+                {/* className="form-group" */}
+                <div>
+                  <Button
+                    type="submit"
+                    disabled={!this.validateUser()}
+                    onClick={e => this.handleSubmit(e)}
+                    className="btn-block btn-outline-purple z-depth-1a"
+                    variant="outline-purple"
+                    style={{ width: '100px' }}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </form>
+        </div>
       </div>
     )
   }

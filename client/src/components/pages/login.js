@@ -10,6 +10,7 @@ import { RemoveRedEye } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
+import P1 from '../../p1.jpg'
 
 const styles = theme => ({
   eye: {
@@ -114,94 +115,103 @@ class Login extends Component {
 
     return (
       <div>
+        <div>
+          <img
+            src={P1}
+            style={{
+              backgroundSize: 'cover',
+              width: '100%',
+              height: '100%',
+              position: 'sticky',
+              zIndex: '0'
+              //transform: 'translate3d(0,-180px,0)'
+            }}
+          />
+        </div>
         <br />
         <br />
-        <div className="modal-dialog" role="document">
-          <div className="modal-content form-elegant">
-            <div className="modal-header text-center">
-              <h3
-                className="modal-title w-100 dark-grey-text font-weight-bold my-3"
-                id="myModalLabel"
-              >
-                <div>
-                  <strong> LOGIN</strong>
+        <div
+          style={{
+            zIndex: '30',
+            transform: 'translate3d(0,-750px,30px)',
+            width: '400px',
+            marginLeft: '350px'
+          }}
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content form-elegant">
+              <div className="modal-header text-center">
+                <h3
+                  className="modal-title w-100 dark-grey-text font-weight-bold my-3"
+                  id="myModalLabel"
+                >
+                  <div>
+                    <font color="purple">
+                      <strong> LOGIN</strong>
+                    </font>
+                  </div>
+                </h3>
+              </div>
+              <div className="modal-body mx-4">
+                <div className="md-form mb-5">
+                  <div>
+                    <MDBInput
+                      type="email"
+                      hint="example@hotmail.com"
+                      className={
+                        this.state.email.length === 0 ||
+                        this.state.email.match(
+                          /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
+                        )
+                          ? 'is-valid'
+                          : 'is-invalid'
+                      }
+                      id="Form-email1"
+                      //className="form-control validate"
+                      name="email"
+                      onChange={this.handleInputChange}
+                      value={this.state.email}
+                    >
+                      <div className="valid-feedback">Looks good!</div>
+                      <div className="invalid-feedback">
+                        Please enter a valid email
+                      </div>
+                    </MDBInput>
+                  </div>
                 </div>
-              </h3>
-            </div>
-            <div className="modal-body mx-4">
-              <div className="md-form mb-5">
-                <div>
-                  <MDBInput
-                    type="email"
-                    hint="example@hotmail.com"
+                <div className="md-form pb-3">
+                  <PasswordInput
+                    id="Form-pass1"
                     className={
-                      this.state.email.length === 0 ||
-                      this.state.email.match(
-                        /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
-                      )
-                        ? 'is-valid'
-                        : 'is-invalid'
+                      this.state.password.length > 0 ? 'is-valid' : 'is-invalid'
                     }
-                    id="Form-email1"
-                    //className="form-control validate"
-                    name="email"
-                    onChange={this.handleInputChange}
-                    value={this.state.email}
+                    onChange={this.onChange1}
+                    name="password"
+                    value={this.state.password}
+                    style={{ width: '350px' }}
                   >
                     <div className="valid-feedback">Looks good!</div>
                     <div className="invalid-feedback">
-                      Please enter a valid email
+                      Please enter your password
                     </div>
-                  </MDBInput>
+                  </PasswordInput>
+                </div>
+                <div className="text-center mb-3">
+                  <Button
+                    variant="outline-purple"
+                    style={{
+                      width: '120px',
+                      height: '55px',
+                      backgroundColor: '#a3dbf1'
+                    }}
+                    onClick={e => this.handleSubmit(e)}
+                    type="submit"
+                  >
+                    Login
+                  </Button>
                 </div>
               </div>
-              <div className="md-form pb-3">
-                <PasswordInput
-                  id="Form-pass1"
-                  className={
-                    this.state.password.length > 0 ? 'is-valid' : 'is-invalid'
-                  }
-                  onChange={this.onChange1}
-                  name="password"
-                  value={this.state.password}
-                  style={{ width: '450px' }}
-                >
-                  <div className="valid-feedback">Looks good!</div>
-                  <div className="invalid-feedback">
-                    Please enter your password
-                  </div>
-                </PasswordInput>
-                <p className="font-small blue-text d-flex justify-content-end">
-                  {' '}
-                  <a href="forgotPassword" className="blue-text ml-1">
-                    Forgot Password?
-                  </a>
-                </p>
-              </div>
-              <div className="text-center mb-3">
-                <Button
-                  variant="omar"
-                  style={{
-                    width: '120px',
-                    height: '55px',
-                    backgroundColor: '#a3dbf1'
-                  }}
-                  onClick={e => this.handleSubmit(e)}
-                  type="submit"
-                >
-                  Login
-                </Button>
-              </div>
             </div>
-
-            {/* <div className="modal-footer mx-5 pt-3 mb-1">
-              <p className="font-small grey-text d-flex justify-content-end">
-                Not a member?{' '}
-                <a href="/register" className="blue-text ml-1">
-                  Signup
-                </a>
-              </p>
-            </div> */}
           </div>
         </div>
       </div>

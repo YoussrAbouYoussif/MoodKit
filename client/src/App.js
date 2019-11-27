@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 import store from './store'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import './App.css'
 import Register from './components/pages/Register'
 import Question1 from './components/pages/Question1'
 import Question2 from './components/pages/Question2'
@@ -18,7 +17,6 @@ import Question10 from './components/pages/Question10'
 import Question11 from './components/pages/Question11'
 import Login from './components/pages/login'
 import Profile from './components/pages/profile'
-import Test from './components/pages/test'
 import ChangePassword from './components/pages/changePassword'
 
 class App extends Component {
@@ -32,7 +30,6 @@ class App extends Component {
           <Router>
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/test" component={Test} />
             <Route exact path="/changePassword" component={ChangePassword} />
             <Route
               exact
