@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
 import Image from '../../nada.jpeg'
-
 import { MDBAnimation } from 'mdbreact'
 import Quiz from '../../quiz.png'
 import P1 from '../../p1.jpg'
-import '../../App.css'
+import firebase from 'firebase'
+import axios from 'axios';
+import swal from 'sweetalert'
 
 class Profile extends Component {
   onAnimationEnd(e) {
@@ -14,10 +15,34 @@ class Profile extends Component {
   }
 
   logOut(e) {
-    localStorage.setItem('isLoggedIn', false)
-    if (localStorage.getItem('isLoggedIn') === 'false') {
-      document.location.href = '/'
-    }
+    axios.defaults.headers.common['Authorization'] =
+      'Bearer ' + localStorage.getItem('jwtToken')
+    var apiBaseUrl = '/routes/api/users/SpecificUser'
+
+    axios
+      .get(apiBaseUrl, {
+        headers: { Authorization: localStorage.getItem('jwtToken') }
+      })
+      .then(res => {
+        console.log(res)
+        var specificUser = res.data.data
+        if (
+          specificUser.password === 'Not Needed' &&
+          specificUser.gender === 'Null'
+        ) {
+          firebase.auth().signOut()
+          localStorage.setItem('isLoggedIn', false)
+          if (localStorage.getItem('isLoggedIn') === 'false') {
+            document.location.href = '/'
+          }
+        } else {
+          localStorage.setItem('isLoggedIn', false)
+          if (localStorage.getItem('isLoggedIn') === 'false') {
+            document.location.href = '/'
+          }
+        }
+      })
+      .catch(err => swal(err.response.data.errmsg || err.response.data))
   }
 
   changePassword(e) {

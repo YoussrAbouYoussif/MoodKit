@@ -7,8 +7,8 @@ module.exports = {
         .required()
         .max(50),
       gender: Joi.string()
-        .required()
-        .max(6),
+        .max(6)
+        .required(),
       password: Joi.string()
         .min(8)
         .required()
@@ -16,7 +16,7 @@ module.exports = {
       email: Joi.string()
         .required()
         .email()
-        .max(20)
+        .max(60)
     }
     return Joi.validate(request, createSchema)
   },

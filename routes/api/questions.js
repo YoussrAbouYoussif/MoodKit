@@ -39,6 +39,29 @@ router.get('/:id', async (req, res) =>{
     return res.json({ data: question })
 }); 
 
+//Get By Question Number
+router.get('/getByNumber/:questionNumber', async (req, res) =>{
+    try
+    {
+    const questionNumber = parseInt(req.params.questionNumber,10)
+    var question = await Question.find();
+    var requiredQuestion;
+    for(var i =0;i<question.length;i++)
+    {
+        var number = question[i].questionNumber
+        if(questionNumber===number)
+        {
+            requiredQuestion=question[i]
+        }
+    }
+    return res.json({ data: requiredQuestion})
+}
+    catch(err)
+    {
+        console.log(err)
+    }
+});
+
 //Create New Question
 router.post('/', async (req, res) => {
 	const newQuestion = await Question.create(req.body);

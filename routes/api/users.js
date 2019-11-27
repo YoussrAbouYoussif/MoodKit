@@ -86,7 +86,7 @@ router.get(
     var activityArray = mood.activities
     var randomInt = getRandomInt(4)
     var returnedActivities = activityArray[randomInt]
-    res.json({ data: returnedActivities })
+    res.json({ activities: returnedActivities ,moodName:moodName})
   }
 )
 
@@ -107,9 +107,49 @@ router.get(
 )
 
 //Create New User
-router.post('/', async (req, res) => {
-  const newUser = await User.create(req.body)
-  return res.json({ data: newUser })
+router.post('/googleLogin', async (req, res) => {
+  const body={
+    name:req.body.name,
+    email:req.body.email,
+    password:"Not Needed",
+    gender:"Null"
+  }
+  const isValidated = userValidations.createValidation(body);
+    if (isValidated.error) 
+    {
+        console.log(isValidated.error.details[0].message);
+        return  res.status(400).send({msg: isValidated.error.details[0].message ,error:"validation error"}) ;
+    }
+    const user = await User.findOne({email:body.email})
+    if(!user) 
+    {
+    const newUser = new User({
+            name:body.name,
+            email:body.email,
+            password:body.password,
+            gender:body.gender
+        })
+    newUser
+    .save()
+    const payload = {
+      id: newUser.id,
+      name: newUser.name,
+      email: newUser.email
+    }
+    const token = jwt.sign(payload, tokenKey, { expiresIn: '24h' })
+    res.json({ data: `Bearer ${token}` })
+    return res.json({ data: 'Token' })
+  }
+  else{
+    const payload = {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    }
+    const token = jwt.sign(payload, tokenKey, { expiresIn: '24h' })
+    res.json({ data: `Bearer ${token}` })
+    return res.json({ data: 'Token' })
+  }
 })
 
 //Update User
@@ -118,11 +158,14 @@ router.put(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const user = await User.findById(req.user.id)
-      if (!user) return res.status(404).send({ error: 'User does not exist' })
-      const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body)
-      res.json({ msg: 'User updated successfully', data: updatedUser })
-    } catch (error) {
+     const user = await User.findById(req.user.id)
+     console.log(user)
+     if(!user) return res.status(404).send({error: 'User does not exist'})
+     const updatedUser = await User.findByIdAndUpdate(req.user.id,req.body)
+     return res.json({data:updatedUser})
+    }
+    catch(error)
+    {
       console.log(error)
     }
   }
