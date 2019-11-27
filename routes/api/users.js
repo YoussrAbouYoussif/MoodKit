@@ -86,7 +86,7 @@ router.get(
     var activityArray = mood.activities
     var randomInt = getRandomInt(4)
     var returnedActivities = activityArray[randomInt]
-    res.json({ data: returnedActivities })
+    res.json({ activities: returnedActivities ,moodName:moodName})
   }
 )
 

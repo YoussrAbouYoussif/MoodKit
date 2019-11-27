@@ -15,10 +15,12 @@ import Question8 from './components/pages/Question8'
 import Question9 from './components/pages/Question9'
 import Question10 from './components/pages/Question10'
 import Question11 from './components/pages/Question11'
-import Google from './components/pages/GoogleLogin' 
+//import Google from './components/pages/GoogleLogin' 
 import Login from './components/pages/login'
 import Profile from './components/pages/profile'
 import ChangePassword from './components/pages/changePassword'
+import LandingBody from './components/pages/landingBody';
+import Result from './components/pages/Result';
 
 
 
@@ -55,11 +57,13 @@ class App extends Component {
             render={(props) => <Question10 {...props} />} />
             <Route exact path="/eleventhQuestion"
             render={(props) => <Question11 {...props} />} />
-            <Route exact path="/googleLogin"
-            render={(props) => <Google {...props} />} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/changePassword" component={ChangePassword} />
+            <Route	exact path="/"
+				    render={(props) => <LandingBody {...props} />} />
+			      <Route exact path="/result"
+				    render={(props) => <Result {...props} />}/>
         </Router>
         </Provider>
       </div>

@@ -9,14 +9,14 @@ router.get('/', async (req, res) => {
 })
 
 // Get By ID
-router.get('/:id', async (req, res) => {
+router.get('/getById/:id', async (req, res) => {
   const mood = await Mood.findById(req.params.id)
   return res.json({ data: mood })
 })
 
 //Get By Mood Name
 router.get('/:moodName', async (req, res) => {
-  const mood = await Mood.findOne(req.params.moodName)
+  const mood = await Mood.findOById(req.params.moodName)
   return res.json({ data: mood })
 })
 
