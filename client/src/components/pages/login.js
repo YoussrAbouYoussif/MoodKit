@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
 import P1 from '../../p1.jpg'
-
+import FittedImage from 'react-fitted-image'
 const styles = theme => ({
   eye: {
     cursor: 'pointer'
@@ -116,7 +116,8 @@ class Login extends Component {
     return (
       <div>
         <div>
-          <img
+          <FittedImage
+            fit="auto"
             src={P1}
             style={{
               backgroundSize: 'cover',
@@ -124,7 +125,20 @@ class Login extends Component {
               height: '100%',
               position: 'sticky',
               zIndex: '0'
-              //transform: 'translate3d(0,-180px,0)'
+              //backgroundSize: 'contain'
+            }}
+            canvas={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0
+            }}
+            container={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative'
             }}
           />
         </div>
