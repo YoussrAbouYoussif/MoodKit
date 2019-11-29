@@ -89,7 +89,7 @@ class LandingBody extends Component {
               <img src={Image1} width="1250px" height="580px" />
             </div>
             <Carousel.Caption>
-              <h3 style={{ color: '	#9932CC' }}>How are you feeling today?</h3>
+              <h3 style={{ color: 'white' }}>How are you feeling today?</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -97,7 +97,7 @@ class LandingBody extends Component {
               <img src={Image2} width="1250px" height="580px" />
             </div>
             <Carousel.Caption>
-              <h3 style={{ color: '	#9932CC' }}>
+              <h3 style={{ color: 'white' }}>
                 Feeling lonely? We're there for you!
               </h3>
             </Carousel.Caption>
@@ -107,7 +107,7 @@ class LandingBody extends Component {
               <img src={Image3} width="1250px" height="580px" />
             </div>
             <Carousel.Caption>
-              <h3 style={{ color: '	#9932CC' }}>
+              <h3 style={{ color: 'white' }}>
                 Feeling happy? We're supporting you!
               </h3>
             </Carousel.Caption>
@@ -117,27 +117,24 @@ class LandingBody extends Component {
               <img src={Image4} width="1250px" height="580px" />
             </div>
             <Carousel.Caption>
-              <h3 style={{ color: '	#9932CC' }}>
+              <h3 style={{ color: 'white' }}>
                 Feeling down? We're here to motivate you!
               </h3>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
 
-        <h1
-          zIndex="3"
-          text="MoodKit"
-          style={{
+        <div zIndex="3" style={{
             fontFamily: 'serif',
-            fontSize: '80px',
+            fontSize: '500%',
             fontWeight: 'bold',
             fontStyle: 'italic',
             color: '#4B0082',
             opacity: '1.0',
-            transform: 'translate3d(460px,-300px,100px)'
-          }}
-        ></h1>
-
+            transform: 'translate3d(470px,-500px,100px)'
+          }} >
+        <p fontSize= "500%">  MoodKit</p>
+        </div>
         <div>
           <Button
             variant="outline-purple"
@@ -145,7 +142,7 @@ class LandingBody extends Component {
             href="/login"
             style={{
               transform: 'translate3d(500px,-490px,0px)',
-              width: '80px'
+              width: '75px'
             }}
           >
             <font color="purple" fontSize="20px">
@@ -162,7 +159,7 @@ class LandingBody extends Component {
           href="/Register"
           style={{ transform: 'translate3d(620px,-565px,0px)', width: '100px' }}
         >
-          <font color="purple" fontSize="20px">
+          <font color="purple" fontSize="10px">
             {' '}
             Register
           </font>
