@@ -11,7 +11,6 @@ import { withStyles } from '@material-ui/core/styles'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
 import P1 from '../../p1.jpg'
-import FittedImage from 'react-fitted-image'
 const styles = theme => ({
   eye: {
     cursor: 'pointer'
@@ -116,7 +115,7 @@ class Login extends Component {
     return (
       <div>
         <div>
-          <FittedImage
+          <img
             fit="auto"
             src={P1}
             style={{
