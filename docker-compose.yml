@@ -1,0 +1,28 @@
+version: "3"
+services:
+    client:
+        container_name: client_frontEnd
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        image: run/modekit_frontend
+        ports:
+            - "80:3000"
+        volumes:
+            - ./client:/client
+    server:
+        container_name: server_backEnd
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        image: run/modekit_backend
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./server:/server
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        ports:
+            - "27017:27017"

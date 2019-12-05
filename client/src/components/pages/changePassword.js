@@ -2,11 +2,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react'
 import axios from 'axios'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact'
-import Button from '@material-ui/core/Button'
+import { MDBRow, MDBCol, MDBInput} from 'mdbreact'
+import { Button } from 'react-bootstrap'
 import swal from 'sweetalert'
 import { MDBCard, MDBCardBody } from 'mdbreact'
-import Back from '../../back.jpg'
+import P1 from '../../p1.jpg'
 var mongoose = require('mongoose')
 
 const styles = theme => ({
@@ -41,7 +41,7 @@ class ChangePassword extends React.Component {
       })
       .then(res => {
         swal(res.data.msg)
-      })
+        setTimeout("document.location.href = '/profile';",3500);      })
       .catch(err => swal(err.response.data.errmsg || err.response.data))
   }
 
@@ -66,7 +66,7 @@ class ChangePassword extends React.Component {
       <div>
         <div>
           <img
-            src={Back}
+            src={P1}
             style={{
               backgroundSize: 'cover',
               width: '100%',
@@ -77,15 +77,17 @@ class ChangePassword extends React.Component {
             }}
           />
         </div>
-        <div style={{ zIndex: '30', transform: 'translate3d(0,-630px,30px)' }}>
+        <div style={{ zIndex: '30', transform: 'translate3d(0,-670px,30px)' }}>
           <MDBCard
-            style={{ width: '450px', height: '510px', marginLeft: '350px' }}
+            style={{ width: '420px', height: '480px', marginLeft: '350px' }}
           >
             <MDBCardBody>
               <div>
-                <h1 style={{ marginLeft: '70px', marginRight: '20px' }}>
-                  Change Password
-                </h1>
+                <h2 style={{ marginLeft: '70px', marginRight: '20px' }}>
+                  <font color="purple">
+                    <strong>Change Password</strong>
+                  </font>
+                </h2>
                 <MuiThemeProvider>
                   <div style={{ paddingLeft: '30px' }}>
                     <br />
@@ -146,8 +148,8 @@ class ChangePassword extends React.Component {
                     <div>
                       <Button
                         label="Submit"
-                        className="btn btn-outline-secondary btn-rounded waves-effect"
-                        variant="omar"
+                        //className="btn btn-outline-purple btn-rounded waves-effect"
+                        variant="outline-purple"
                         style={{
                           marginLeft: '120px',
                           width: '100px',
@@ -157,7 +159,7 @@ class ChangePassword extends React.Component {
                         disabled={!this.validatePassword()}
                         onClick={event => this.handleClick(event)}
                       >
-                        Submit
+                        <font color="purple">Submit</font>
                       </Button>
                     </div>
                   </div>

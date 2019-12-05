@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import store from './store'
-import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import './App.css'
+
 import Register from './components/pages/Register'
 import Question1 from './components/pages/Question1'
 import Question2 from './components/pages/Question2'
@@ -16,24 +15,24 @@ import Question8 from './components/pages/Question8'
 import Question9 from './components/pages/Question9'
 import Question10 from './components/pages/Question10'
 import Question11 from './components/pages/Question11'
+import Question12 from './components/pages/Question12'
+import Question13 from './components/pages/Question13'
+//import Google from './components/pages/GoogleLogin'
 import Login from './components/pages/login'
 import Profile from './components/pages/profile'
-import Test from './components/pages/test'
 import ChangePassword from './components/pages/changePassword'
-
+import LandingBody from './components/pages/landingBody'
+import Result from './components/pages/Result'
+import './App.css'
 class App extends Component {
   constructor() {
     super()
   }
   render() {
     return (
-      <div>
+      <div style={{ minHeight: '100hv' }}>
         <Provider store={store}>
           <Router>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/test" component={Test} />
-            <Route exact path="/changePassword" component={ChangePassword} />
             <Route
               exact
               path="/register"
@@ -93,6 +92,29 @@ class App extends Component {
               exact
               path="/eleventhQuestion"
               render={props => <Question11 {...props} />}
+            />
+             <Route
+              exact
+              path="/twelfthQuestion"
+              render={props => <Question12 {...props} />}
+            />
+            <Route
+              exact
+              path="/thirteenthQuestion"
+              render={props => <Question13 {...props} />}
+            />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/changePassword" component={ChangePassword} />
+            <Route
+              exact
+              path="/"
+              render={props => <LandingBody {...props} />}
+            />
+            <Route
+              exact
+              path="/result"
+              render={props => <Result {...props} />}
             />
           </Router>
         </Provider>

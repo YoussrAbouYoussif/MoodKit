@@ -42,6 +42,7 @@ export const registerUser = user => dispatch => {
         icon: 'success',
         button: 'Aww yess!'
       })
+      setTimeout((document.location.href = '/login'), 8500)
     })
     .catch(err => {
       swal(err.response.data.error || err.response.data)

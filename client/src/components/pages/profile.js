@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
-import Image from '../../nada.jpeg'
-
 import { MDBAnimation } from 'mdbreact'
 import Quiz from '../../quiz.png'
-import '../../App.css'
+import P1 from '../../p1.jpg'
+import firebase from 'firebase'
+import axios from 'axios';
+import swal from 'sweetalert'
 
 class Profile extends Component {
   onAnimationEnd(e) {
@@ -13,10 +14,34 @@ class Profile extends Component {
   }
 
   logOut(e) {
-    localStorage.setItem('isLoggedIn', false)
-    if (localStorage.getItem('isLoggedIn') === 'false') {
-      document.location.href = '/landingPage'
-    }
+    axios.defaults.headers.common['Authorization'] =
+      'Bearer ' + localStorage.getItem('jwtToken')
+    var apiBaseUrl = '/routes/api/users/SpecificUser'
+
+    axios
+      .get(apiBaseUrl, {
+        headers: { Authorization: localStorage.getItem('jwtToken') }
+      })
+      .then(res => {
+        console.log(res)
+        var specificUser = res.data.data
+        if (
+          specificUser.password === 'Not Needed' &&
+          specificUser.gender === 'Null'
+        ) {
+          firebase.auth().signOut()
+          localStorage.setItem('isLoggedIn', false)
+          if (localStorage.getItem('isLoggedIn') === 'false') {
+            document.location.href = '/'
+          }
+        } else {
+          localStorage.setItem('isLoggedIn', false)
+          if (localStorage.getItem('isLoggedIn') === 'false') {
+            document.location.href = '/'
+          }
+        }
+      })
+      .catch(err => swal(err.response.data.errmsg || err.response.data))
   }
 
   changePassword(e) {
@@ -41,10 +66,10 @@ class Profile extends Component {
                 zIndex: '30',
                 transform: 'translate3d(350px,100px,30px)'
               }}
-              class="btn btn-outline-secondary btn-rounded waves-effect"
+              class="btn btn-transparent btn-rounded waves-effect"
               onClick={this.changePassword}
             >
-              Change Password
+              <font color="white">Change Password</font>
             </button>
           </div>
           <MDBAnimation type="bounce" onClick={this.onAnimationEnd} count={300}>
@@ -59,10 +84,10 @@ class Profile extends Component {
             <button
               type="button"
               style={{ zIndex: '30', transform: 'translate3d(0,100px,30px)' }}
-              class="btn btn-outline-secondary btn-rounded waves-effect"
+              class="btn btn-transparent btn-rounded waves-effect"
               onClick={this.logOut}
             >
-              Logout
+              <font color="white">Logout</font>
             </button>
           </div>
         </div>
@@ -76,7 +101,7 @@ class Profile extends Component {
           }}
         >
           <img
-            src={Image}
+            src={P1}
             style={{
               backgroundSize: 'cover',
               width: '100%',

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -9,10 +8,13 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Question } from 'react-multiple-choice'
 import { MDBCard, MDBCardBody } from 'mdbreact'
+import P1 from '../../p1.jpg'
+
 class Question1 extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      disable : true,
       questionName: '',
       answers: [],
       questionNumber: 1,
@@ -37,6 +39,7 @@ class Question1 extends Component {
   handleChange = choosenAnswer => {
     var choosenAnswersArray = []
     choosenAnswersArray[0] = choosenAnswer.target.value
+    this.setState({disable:false})
     localStorage.setItem('answers', JSON.stringify(choosenAnswersArray))
     console.log(localStorage.getItem('answers'))
   }
@@ -45,67 +48,89 @@ class Question1 extends Component {
     const { choosenAnswer } = this.state
     return (
       <div>
-        <MDBCard
-          style={{ width: '500px', height: '500px', marginLeft: '340px' }}
+        <div>
+          <img
+            src={P1}
+            style={{
+              backgroundSize: 'cover',
+              width: '100%',
+              height: '100%',
+              position: 'sticky',
+              zIndex: '0'
+              //transform: 'translate3d(0,-180px,0)'
+            }}
+          />
+        </div>
+        <div
+          style={{
+            zIndex: '30',
+            transform: 'translate3d(0,-680px,30px)',
+            width: '400px'
+          }}
         >
-          <MDBCardBody>
-            <FormControl component="fieldset">
-              <Question>
-                <h2>
-                  <font color="purple">
-                    <strong>{this.state.questionName}</strong>
-                  </font>
-                </h2>
-              </Question>
-              <RadioGroup
-                aria-label="question1"
-                name="question1"
-                value={choosenAnswer}
-                onChange={this.handleChange}
-              >
-                <FormControlLabel
-                  value="a"
-                  control={<Radio color="purple" />}
-                  label={this.state.answers[0]}
-                />
-                <FormControlLabel
-                  value="b"
-                  control={<Radio color="purple" />}
-                  label={this.state.answers[1]}
-                />
-                <FormControlLabel
-                  value="c"
-                  control={<Radio color="purple" />}
-                  label={this.state.answers[2]}
-                />
-                <FormControlLabel
-                  value="d"
-                  control={<Radio color="purple" />}
-                  label={this.state.answers[3]}
-                />
-                <FormControlLabel
-                  value="e"
-                  control={<Radio color="purple" />}
-                  label={this.state.answers[4]}
-                />
-                <FormControlLabel
-                  value="f"
-                  control={<Radio color="purple" />}
-                  label={this.state.answers[5]}
-                />
-              </RadioGroup>
-            </FormControl>
+          <MDBCard
+            style={{ width: '500px', height: '500px', marginLeft: '340px' }}
+          >
+            <MDBCardBody>
+              <FormControl component="fieldset">
+                <Question>
+                  <h2>
+                    <font color="purple">
+                      <strong>{this.state.questionName}</strong>
+                    </font>
+                  </h2>
+                </Question>
+                <RadioGroup
+                  aria-label="question1"
+                  name="question1"
+                  value={choosenAnswer}
+                  onChange={this.handleChange}
+                >
+                  <FormControlLabel
+                    value="a"
+                    control={<Radio color="purple" />}
+                    label={this.state.answers[0]}
+                  />
+                  <FormControlLabel
+                    value="b"
+                    control={<Radio color="purple" />}
+                    label={this.state.answers[1]}
+                  />
+                  <FormControlLabel
+                    value="c"
+                    control={<Radio color="purple" />}
+                    label={this.state.answers[2]}
+                  />
+                  <FormControlLabel
+                    value="d"
+                    control={<Radio color="purple" />}
+                    label={this.state.answers[3]}
+                  />
+                  <FormControlLabel
+                    value="e"
+                    control={<Radio color="purple" />}
+                    label={this.state.answers[4]}
+                  />
+                  <FormControlLabel
+                    value="f"
+                    control={<Radio color="purple" />}
+                    label={this.state.answers[5]}
+                  />
+                </RadioGroup>
+              </FormControl>
 
-            <Button
-              href="/secondQuestion"
-              style={{ marginRight: '300px' }}
-              variant="outline-purple"
-            >
-              Next
-              <Link to={'/secondQuestion'}></Link>
-            </Button>
-          </MDBCardBody>
-        </MDBCard>
+              <Button
+                href="/secondQuestion"
+                style={{ marginRight: '300px' }}
+                variant="outline-purple"
+                disabled={this.state.disable}
+              >
+                Next
+                <Link to={'/secondQuestion'}></Link>
+              </Button>
+            </MDBCardBody>
+          </MDBCard>
+        </div>
       </div>
     )
   }
