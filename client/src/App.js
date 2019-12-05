@@ -15,6 +15,8 @@ import Question8 from './components/pages/Question8'
 import Question9 from './components/pages/Question9'
 import Question10 from './components/pages/Question10'
 import Question11 from './components/pages/Question11'
+import Question12 from './components/pages/Question12'
+import Question13 from './components/pages/Question13'
 //import Google from './components/pages/GoogleLogin'
 import Login from './components/pages/login'
 import Profile from './components/pages/profile'
@@ -90,6 +92,16 @@ class App extends Component {
               exact
               path="/eleventhQuestion"
               render={props => <Question11 {...props} />}
+            />
+             <Route
+              exact
+              path="/twelfthQuestion"
+              render={props => <Question12 {...props} />}
+            />
+            <Route
+              exact
+              path="/thirteenthQuestion"
+              render={props => <Question13 {...props} />}
             />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />

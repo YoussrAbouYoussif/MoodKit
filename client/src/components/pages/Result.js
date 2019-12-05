@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
 import axios from 'axios';
-import Back from '../layout/Back.jpeg';
+import P1 from '../../p1.jpg'
 import food from '../layout/food.jpg';
 import song from '../layout/song.jpg';
 import quote1 from '../layout/quote1.png';
 import book11 from '../layout/book11.png';
-import { Random } from 'react-animated-text';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
+import { Button } from 'react-bootstrap'
 
 class Result extends Component {
 	constructor(props) {
@@ -40,14 +40,140 @@ class Result extends Component {
 	}
 
 	render() {
+        var Happy=(
+        <div style=
+            {
+                {
+                 fontFamily:"serif",
+                 fontStyle:"italic",
+                 transform:'translate3d(590px,-140px,0)',
+                 color:'black'
+                }
+            }>
+                
+                <h3
+                style={{fontWeight:"bold", fontSize:"45px",transform:"translate3d(-20px,0px,0)",color:"	#800080"}} 
+                right="150px"
+                left="300px"
+                color="red"
+                >
+                    Happy
+                </h3>
+            </div>
+        );
+        var Sad=(
+            <div style=
+                {
+                    {
+                     fontFamily:"serif",
+                     fontStyle:"italic",
+                     transform:'translate3d(590px,-140px,0)',
+                     color:'black'
+                    }
+                }>
+                    
+                    <h3
+                    style={{fontWeight:"bold", fontSize:"45px",transform:"translate3d(10px,0px,0)",color:"	#800080"}} 
+                    right="150px"
+                    left="300px"
+                    color="red"
+                    >
+                        Sad
+                    </h3>
+                </div>
+            );
+            var Lonely=(
+                <div style=
+                    {
+                        {
+                         fontFamily:"serif",
+                         fontStyle:"italic",
+                         transform:'translate3d(590px,-140px,0)',
+                         color:'black'
+                        }
+                    }>
+                        
+                        <h3
+                        style={{fontWeight:"bold", fontSize:"45px",transform:"translate3d(-20px,0px,0)",color:"	#800080"}} 
+                        right="150px"
+                        left="300px"
+                        color="red"
+                        >
+                            Lonely
+                        </h3>
+                    </div>
+                );
+                var Frustrated=(
+                    <div style=
+                        {
+                            {
+                             fontFamily:"serif",
+                             fontStyle:"italic",
+                             transform:'translate3d(590px,-140px,0)',
+                             color:'black'
+                            }
+                        }>
+                            
+                            <h3
+                            style={{fontWeight:"bold", fontSize:"45px",transform:"translate3d(-55px,0px,0)",color:"	#800080"}} 
+                            right="150px"
+                            left="300px"
+                            color="red"
+                            >
+                                Frustrated
+                            </h3>
+                        </div>
+                    );
+                    var Stressed=(
+                        <div style=
+                            {
+                                {
+                                 fontFamily:"serif",
+                                 fontStyle:"italic",
+                                 transform:'translate3d(590px,-140px,0)',
+                                 color:'black'
+                                }
+                            }>
+                                
+                                <h3
+                                style={{fontWeight:"bold", fontSize:"45px",transform:"translate3d(-35px,0px,0)",color:"	#800080"}} 
+                                right="150px"
+                                left="300px"
+                                color="red"
+                                >
+                                    Stressed
+                                </h3>
+                            </div>
+                        );
+                        var Depressed=(
+                            <div style=
+                                {
+                                    {
+                                     fontFamily:"serif",
+                                     fontStyle:"italic",
+                                     transform:'translate3d(590px,-140px,0)',
+                                     color:'black'
+                                    }
+                                }>
+                                    
+                                    <h3
+                                    style={{fontWeight:"bold", fontSize:"45px",transform:"translate3d(-55px,0px,0)",color:"	#800080"}} 
+                                    right="150px"
+                                    left="300px"
+                                    color="red"
+                                    >
+                                        Depressed
+                                    </h3>
+                                </div>
+                            );
 		return (
             <div
             style=
             {
                 {
-                    backgroundImage:"url("+Back+")",
+                    backgroundImage:"url("+P1+")",
                     backgroundSize:'1250px',
-                    height:'580px',
+                    height:'620px',
                     position:'sticky'
                 }
             }
@@ -63,7 +189,7 @@ class Result extends Component {
                  borderRadius: "50%",
                  display: "inline-block" ,
                  transform:'translate3d(480px,150px,0)',
-                 opacity: '0.75'
+                 opacity: '0.2'
                 }
             }
             >
@@ -114,26 +240,13 @@ class Result extends Component {
                you feel
             </h5>    
 
-            <div style=
-            {
-                {
-                 fontFamily:"serif",
-                 fontSize:"45px",
-                 fontWeight:"bold",
-                 fontStyle:"italic",
-                 transform:'translate3d(590px,-140px,0)',
-                 color:'black'
-                }
-            }>
-                
-                <Random 
-                text={this.state.moodName}
-                transform="translate3d(575px,-130px,0"
-                right="150px"
-                left="300px"
-                color="red"
-                >
-                </Random>
+            <div >
+            {this.state.moodName==='Happy'? Happy:null}
+            {this.state.moodName==='Sad'? Sad:null}
+            {this.state.moodName==='Lonely'? Lonely:null}
+            {this.state.moodName==='Frustrated/Annoyed'? Frustrated:null}
+            {this.state.moodName==='Stressed/Nervous'? Stressed:null}
+            {this.state.moodName==='Depressed'? Depressed:null}
             </div>
 
             <h5
@@ -165,13 +278,26 @@ class Result extends Component {
             >
               that suit your mood.
             </h5>
+
+            <Button
+                variant="outline-purple"
+                block
+                href="/profile"
+                style={{ transform: 'translate3d(520px,-65px,0px)', width: '200px' }}
+            >
+          <font color="purple" fontSize="10px">
+            {' '}
+            Go to your profile
+          </font>
+        </Button>
+
             <Flippy
                
 				flipOnHover={true}
 				flipOnClick={false}
 				flipDirection="horizontal"
 				ref={(r) => (this.flippy = r)}
-				style={{ width: '230px', height: '210px' , transform:'translate3d(50px,-520px,0)',}}
+				style={{ width: '230px', height: '210px' , transform:'translate3d(50px,-500px,0)',}}
 			>
 				<FrontSide
 					style={{
@@ -221,7 +347,7 @@ class Result extends Component {
 				flipOnClick={false}
 				flipDirection="horizontal"
 				ref={(r) => (this.flippy = r)}
-				style={{ width: '230px', height: '210px' , transform:'translate3d(900px,-730px,0)',}}
+				style={{ width: '230px', height: '210px' , transform:'translate3d(900px,-710px,0)',}}
 			>
 				<FrontSide
 					style={{
@@ -274,7 +400,7 @@ class Result extends Component {
 				flipOnClick={false}
 				flipDirection="horizontal"
 				ref={(r) => (this.flippy = r)}
-				style={{ width: '230px', height: '210px' , transform:'translate3d(900px,-645px,0)'}}
+				style={{ width: '230px', height: '210px' , transform:'translate3d(900px,-635px,0)'}}
 			>
 				<FrontSide
 					style={{
@@ -356,7 +482,7 @@ class Result extends Component {
 				flipOnClick={false}
 				flipDirection="horizontal"
 				ref={(r) => (this.flippy = r)}
-				style={{ width: '230px', height: '210px' , transform:'translate3d(50px,-850px,0)',}}
+				style={{ width: '230px', height: '210px' , transform:'translate3d(50px,-840px,0)',}}
 			>
 				<FrontSide
 					style={{

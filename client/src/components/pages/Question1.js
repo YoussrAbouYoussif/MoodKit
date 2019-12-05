@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -15,6 +14,7 @@ class Question1 extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      disable : true,
       questionName: '',
       answers: [],
       questionNumber: 1,
@@ -39,6 +39,7 @@ class Question1 extends Component {
   handleChange = choosenAnswer => {
     var choosenAnswersArray = []
     choosenAnswersArray[0] = choosenAnswer.target.value
+    this.setState({disable:false})
     localStorage.setItem('answers', JSON.stringify(choosenAnswersArray))
     console.log(localStorage.getItem('answers'))
   }
@@ -122,6 +123,7 @@ class Question1 extends Component {
                 href="/secondQuestion"
                 style={{ marginRight: '300px' }}
                 variant="outline-purple"
+                disabled={this.state.disable}
               >
                 Next
                 <Link to={'/secondQuestion'}></Link>

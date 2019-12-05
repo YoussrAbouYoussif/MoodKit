@@ -1,0 +1,31 @@
+{
+	"name": "MoodKit",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"axios": "^0.18.0",
+		"bcrypt": "^3.0.5",
+		"bcryptjs": "^2.4.3",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"joi": "^14.3.1",
+		"joi-objectid": "^2.0.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.4.22",
+		"mongoose-type-url": "^1.0.5",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
+		"passport-local": "^1.0.0"
+	},
+	"devDependencies": {
+		"nodemon": "^1.19.0"
+	},
+	"scripts": {
+		"client-install": "npm install --prefix client",
+		"start": "node index.js",
+		"server": "nodemon index.js",
+		"client": "npm install --prefix client"
+	},
+	"keywords": []
+}

@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -17,6 +14,7 @@ class Question4 extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      disable:true,
       questionName: '',
       answers: [],
       questionNumber: 4,
@@ -42,6 +40,7 @@ class Question4 extends Component {
     var choosenAnswersArray = []
     choosenAnswersArray = JSON.parse(localStorage.getItem('answers'))
     choosenAnswersArray[3] = choosenAnswer.target.value
+    this.setState({disable:false})
     localStorage.setItem('answers', JSON.stringify(choosenAnswersArray))
     console.log(localStorage.getItem('answers'))
   }
@@ -124,6 +123,7 @@ class Question4 extends Component {
                 href="/fifthQuestion"
                 style={{ marginRight: '300px' }}
                 variant="outline-purple"
+                disabled={this.state.disable}
               >
                 Next
                 <Link to={'/fifthQuestion'}></Link>

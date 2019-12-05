@@ -11,11 +11,13 @@ import axios from 'axios'
 import setAuthToken from '../../actions/setAuthToken'
 import swal from 'sweetalert'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Wave } from 'react-animated-text'
+
+const apiKey = require('../../config/firebaseAuth').apiKey;
+const authDomain = require('../../config/firebaseAuth').authDomain;
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyDLoqcbTDMFuurtAyDgVEKZ6qwo0j0Osjk',
-  authDomain: 'fir-auth-tutorial-ed11f.firebaseapp.com'
+  apiKey: apiKey,
+  authDomain: authDomain
 })
 
 class LandingBody extends Component {

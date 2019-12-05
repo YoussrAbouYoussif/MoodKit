@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
-import Image from '../../nada.jpeg'
 import { MDBAnimation } from 'mdbreact'
 import Quiz from '../../quiz.png'
 import P1 from '../../p1.jpg'

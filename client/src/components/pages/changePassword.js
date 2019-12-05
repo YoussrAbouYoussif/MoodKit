@@ -2,12 +2,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react'
 import axios from 'axios'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact'
+import { MDBRow, MDBCol, MDBInput} from 'mdbreact'
 import { Button } from 'react-bootstrap'
 import swal from 'sweetalert'
 import { MDBCard, MDBCardBody } from 'mdbreact'
 import P1 from '../../p1.jpg'
-
 var mongoose = require('mongoose')
 
 const styles = theme => ({
@@ -42,7 +41,7 @@ class ChangePassword extends React.Component {
       })
       .then(res => {
         swal(res.data.msg)
-      })
+        setTimeout("document.location.href = '/profile';",3500);      })
       .catch(err => swal(err.response.data.errmsg || err.response.data))
   }
 

@@ -5,19 +5,18 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import { Question } from 'react-multiple-choice'
 import { MDBCard, MDBCardBody } from 'mdbreact'
 import P1 from '../../p1.jpg'
 
-class Question6 extends Component {
+class Question13 extends Component {
   constructor(props) {
     super(props)
     this.state = {
       disable:true,
       questionName: '',
       answers: [],
-      questionNumber: 6,
+      questionNumber: 13,
       choosenAnswer: null
     }
   }
@@ -39,10 +38,34 @@ class Question6 extends Component {
   handleChange = choosenAnswer => {
     var choosenAnswersArray = []
     choosenAnswersArray = JSON.parse(localStorage.getItem('answers'))
-    choosenAnswersArray[5] = choosenAnswer.target.value
+    choosenAnswersArray[10] = choosenAnswer.target.value
     this.setState({disable:false})
     localStorage.setItem('answers', JSON.stringify(choosenAnswersArray))
     console.log(localStorage.getItem('answers'))
+  }
+
+  handleClick = () => {
+    var choosenAnswersArray = []
+    choosenAnswersArray = JSON.parse(localStorage.getItem('answers'))
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem(
+      'jwtToken'
+    )
+    var payload = {
+      arrayOfAnswers: choosenAnswersArray
+    }
+    axios.defaults.headers.common['Authorization'] =
+      'Bearer ' + localStorage.getItem('jwtToken')
+    console.log('world')
+    axios
+      .put('/routes/api/users/UpdateUser/', payload, {
+        headers: { Authorization: localStorage.getItem('jwtToken') }
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
   }
 
   render() {
@@ -82,8 +105,8 @@ class Question6 extends Component {
                   </h2>
                 </Question>
                 <RadioGroup
-                  aria-label="question6"
-                  name="question6"
+                  aria-label="question13"
+                  name="question13"
                   value={choosenAnswer}
                   onChange={this.handleChange}
                 >
@@ -120,13 +143,13 @@ class Question6 extends Component {
                 </RadioGroup>
               </FormControl>
               <Button
-                href="/seventhQuestion"
+                onClick={this.handleClick()}
+                href="/result"
                 style={{ marginRight: '300px' }}
                 variant="outline-purple"
                 disabled={this.state.disable}
               >
-                Next
-                <Link to={'/seventhQuestion'}></Link>
+                Submit
               </Button>
             </MDBCardBody>
           </MDBCard>
@@ -135,4 +158,4 @@ class Question6 extends Component {
     )
   }
 }
-export default Question6
+export default Question13
