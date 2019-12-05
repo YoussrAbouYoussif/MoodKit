@@ -60,7 +60,7 @@ class LandingBody extends Component {
             localStorage.setItem('isLoggedIn', true)
             setAuthToken(token)
             if (localStorage.getItem('isLoggedIn') === 'true') {
-              document.location.href = '/profile'
+              document.location.href = '/yourProfile'
               this.setState({ isSignedIn: false })
             }
           })
