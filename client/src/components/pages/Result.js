@@ -38,7 +38,28 @@ class Result extends Component {
 				});
             });
 	}
+    buttonOnClick(e){
+        axios.defaults.headers.common['Authorization'] =
+      'Bearer ' + localStorage.getItem('jwtToken')
+    var apiBaseUrl = '/routes/api/users/SpecificUser'
 
+    axios
+      .get(apiBaseUrl, {
+        headers: { Authorization: localStorage.getItem('jwtToken') }
+      })
+      .then(res => {
+        var specificUser = res.data.data
+        if (
+          specificUser.password === 'Not Needed' &&
+          specificUser.gender === 'Null'
+        ) {
+            document.location.href = '/yourProfile'
+        }
+        else{
+            document.location.href = '/profile'
+        }
+    })
+}
 	render() {
         var Happy=(
         <div style=
@@ -282,7 +303,7 @@ class Result extends Component {
             <Button
                 variant="outline-purple"
                 block
-                href="/profile"
+                onClick={this.buttonOnClick}
                 style={{ transform: 'translate3d(520px,-65px,0px)', width: '200px' }}
             >
           <font color="purple" fontSize="10px">
