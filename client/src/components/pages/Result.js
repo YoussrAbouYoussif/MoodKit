@@ -23,7 +23,7 @@ class Result extends Component {
 		};
 
 		axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwtToken');
-		axios.get('http://localhost:3000/routes/api/users/CalculateScore/', {
+		axios.get('/routes/api/users/CalculateScore/', {
 				headers: { Authorization: localStorage.getItem('jwtToken') }
 			})
 			.then((response) => {
