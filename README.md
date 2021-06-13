@@ -95,20 +95,15 @@ Our project has 2 config files:
     1. In the backend, 
         
         I) a file containing the connection to mongoDB
-            
             a)keys
-            
             b)keys_dev
-            
             c)keys_production
         
         II) a file containing passport for authentication
-            
             a)passport
     
     2. In the frontend, a file contatining the connection to firebase
-        
-        a)firebaseAuth
+            a)firebaseAuth
 
 ## Docker
 Our projet has:-
