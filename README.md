@@ -12,7 +12,9 @@ that the user needs to take at the beginning.
 
 ## Dependencies used
 Client side:
+
     1. @material-ui/core:- used for implementing google's material design.
+    
     2. @material-ui/icons:- used for displaying material ui icons.
     3. axios:- used for performing HTTP requests to the database.
     4. bootstrap:- used for designing websites faster and easier.
