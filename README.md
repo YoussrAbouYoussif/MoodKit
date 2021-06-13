@@ -86,7 +86,6 @@ Server side:
     11. passport:- used for authentication.
     
     12. passport-jwt:- used for authentication.
-    
     13. passport-local:- used for authentication.
 
 ## Config files
