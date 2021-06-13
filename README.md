@@ -16,42 +16,77 @@ Client side:
     1. @material-ui/core:- used for implementing google's material design.
     
     2. @material-ui/icons:- used for displaying material ui icons.
+    
     3. axios:- used for performing HTTP requests to the database.
+    
     4. bootstrap:- used for designing websites faster and easier.
+    
     5. css:- used for designing the website.
+    
     6. firebase:- used for integration with google for google sign in.
+    
     7. jquery:- used for making it easier to use JavaScript on the websites.
+    
     8. jwt-decode:- used for decoding jwt tokens.
+    
     9. material-ui:- used for the designing the website in a better way.
+    
     10. materialize-css:- used for styling the website.
+    
     11. mdbreact:- used for styling the website.
+    
     12. prop-types:- used for register and login.
+    
     13. react:- the application itself.
+    
     14. react-bootstrap:- used for designing the website.
+    
     15. react-dom:- used for providing DOM-specific methods.
+    
     16. react-firebaseui:- used for styling the google sign in button.
+    
     17. react-flippy:- used for the flipping cards.
+    
     18. react-multiple-choice:- used for the quiz's multiple choices.
+    
     19. react-redux:- state management tool.
+    
     20. react-router-dom:- keeps the app's UI and URL in sync.
+    
     21. react-scripts:- a set of scripts for creating react app.
+    
     22. redux:- state management tool.
+    
     23. redux-thunk:- middleware.
+    
     24. sweetalert:- used for the popup.
 
 Server side:
+    
     1. axios:- used for performing HTTP requests to the database.
+    
     2. bcrypt:- used for hashing/encrypting the passwords.
+    
     3. bcryptjs:-  used for hashing/encrypting the passwords.
+    
     4. cors:- used for adding additional HTTP headers to tell browsers to give a web application running at one origin, access           to selected resources from a different origin.
+    
     5. express:- web application framework.
+    
     6. joi:- used in the validations.
+    
     7. joi-objectid:- used for the validations also.
+    
     8. jsonwebtoken:- used for taking the token after logging in.
+    
     9. mongoose:- used for mongoDB.
+    
     10. mongoose-type-url:- used for mongoDB URL.
+    
     11. passport:- used for authentication.
+    
     12. passport-jwt:- used for authentication.
+    
     13. passport-local:- used for authentication.
 
 ## Config files
